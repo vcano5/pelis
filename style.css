@@ -1,0 +1,19 @@
+/* .paywall {
+	filter: blur(5px);
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+} */
+
+.paywall {
+	backdrop-filter: blur(5px);
+	z-index: 1;
+}
+
+.content {
+	z-index: 1000;
+}
+
+body {
+	background-color: brown;
+}
