@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Demon Slayer</title>
+
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Alguien te ha invitado a ver una pelicula">
+	<meta property="og:description" content="Entra ahora para ver Demon Slayer: Mugen Train"> 
+	<meta property="og:image" content="https://i.blogs.es/c9d462/demon-slayer-llega-a-mexico/450_1000.jpg">
+	<%- include('../partials/head.ejs') %>
+</head>
+<body>
+	<%- include('../partials/header.ejs') %>
+	
+	<span id="alert"></span>
+	<div class="jumbotron container">
+		<p class="display-4">Para cumplir con los derechos de autor es necesario proporcionar permisos de ubicacion para continuar con la reproducción de este contenido.</p>
+		<div class="input-group fixed-bottom pb-5 justify-content-center">
+			<button class="btn btn-success mx-3" id="allow"><img src="/images/navigation.svg" alt=""> Aceptar</button>
+			<button class="btn btn-danger" id="deny">No, detener reproducción.</button>
+		</div>
+		<i class="fa fa-location-arrow" aria-hidden="true"></i>
+
+	</div>
+	
+</body>
+
+<script>
+	var alertspan = document.querySelector('span#alert')
+
+	document.querySelector('button#allow').addEventListener('click', e => getLocation(e), false);
+	document.querySelector('button#deny').addEventListener('click', e => denyLocation(e), false)
+
+	function denyLocation(e) {
+		e.preventDefault();
+		alert('deny')
+		document.location.href = '/denyLocation'
+	}
+
+	function getLocation(e) {
+		e.preventDefault();
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(savePosition);
+		}
+		else {
+			alertspan.textContent = 'Geolocation is not supported by this browser';
+		}
+		
+	}
+
+	function savePosition(pos) {
+		alert(pos);
+	}
+</script>
+</html>
